@@ -1,6 +1,6 @@
 pragma solidity ^0.8.13;
 
-import "openzeppelin-contracts/utils/Create2.sol";
+import "@openzeppelin/contracts/utils/Create2.sol";
 import "./Interface/IERC6551Registry.sol";
 
 contract ERC6551Registry is IERC6551Registry {
@@ -13,10 +13,10 @@ contract ERC6551Registry is IERC6551Registry {
         uint256 tokenId,
         uint256 salt,
         bytes calldata initData
-    ) external returns (address) {
+    ) external returns (address _account) {
         bytes memory code = _creationCode(implementation, chainId, tokenContract, tokenId, salt);
 
-        address _account = Create2.computeAddress(
+         _account = Create2.computeAddress(
             bytes32(salt),
             keccak256(code)
         );
