@@ -32,37 +32,44 @@ async function main() {
   // accounts = await ethers.getSigners();
   // console.log("Acc 1", accounts[1]);
 
-  console.log("****Minting token from Account 1****");
-  await mocknft.safeMint("0x889C9983762ddbDCaA08e8E3d9cC975E14c2a8eB", "1");
-  // console.log("Owner of ID 1 =>", await mocknft.ownerOf(1));
-  console.log("Owner of NFT Contract =>", await mocknft.owner());
+  // console.log("****Minting token from Account 1****");
+  // await mocknft.safeMint("0x889C9983762ddbDCaA08e8E3d9cC975E14c2a8eB", "1");
+  // // console.log("Owner of ID 1 =>", await mocknft.ownerOf(1));
+  // console.log("Owner of NFT Contract =>", await mocknft.owner());
 
-  console.log(
-    "****Calling ERC6551 Registry function 'createAccount' from Account 1****"
-  );
-  const tbaAccount = await erc6551Registry.createAccount(
-    erc6551Account.address,
-    31337,
-    mocknft.address,
-    1,
-    0,
-    "0x"
-  );
-  const txReceipt = await tbaAccount.wait();
-  // const createdAccountAddress = await txReceipt.logs[0];
-  // console.log("TBA Address =>", createdAccountAddress);  
-  
-  // await erc6551Registry.on("AccountCreated",(_account,implementation,chainId,tokenContract,tokenId,salt) => {
-  //   console.log(_account)
+  // console.log(
+  //   "****Calling ERC6551 Registry function 'createAccount' from Account 1****"
+  // );
+  // const tbaAccount = await erc6551Registry.createAccount(
+  //   erc6551Account.address,
+  //   31337,
+  //   mocknft.address,
+  //   1,
+  //   0,
+  //   "0x"
+  // );
+  // const txReceipt = await tbaAccount.wait();
+  // const tbaAccountCheck = await erc6551Registry.account(
+  //   erc6551Account.address,
+  //   31337,
+  //   mocknft.address,
+  //   1,
+  //   0
+  // );
+  // console.log("TBA Check Check =>", tbaAccountCheck);
+    
+  //********calling event *******//
+  // await erc6551Registry.on("AccountCreated",(account,implementation,chainId,tokenContract,tokenId,salt) => {
+  //   let data = {
+  //     account,
+  //     implementation,
+  //     chainId,
+  //     tokenContract,
+  //     tokenId,
+  //     salt
+  //   }
+  //   console.log("Dataaaaaaa Prrrrrrinted ==>",data)
   // })
-  const tbaAccountCheck = await erc6551Registry.account(
-    erc6551Account.address,
-    31337,
-    mocknft.address,
-    1,
-    0
-  );
-  console.log("TBA Check Check =>", tbaAccountCheck);
 }
 
 // // const tbaOwner = await
